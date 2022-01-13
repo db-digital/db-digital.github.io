@@ -1,0 +1,19 @@
+[
+  
+  {
+    "title": "Kotlin Delegates",
+    "url": "/posts/Kotlin-delegates/",
+    "categories": "Blogging, Kotlin",
+    "tags": "kotlin delegates, Kotlin Property delegation",
+    "date": "2022-01-14 02:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Delegation PatternIn software engineering, the Delegation Pattern is an object-oriented design pattern that allows object composition to achieve the same code reuse as inheritance.DelegationDelegation is the assignment of authority from one instance to another. It can operate mutable as well as static relationships between classes,  and inheritance, in turn , is based on the constant concept.What does it mean?Suppose, we want to enable class B to have functionality of class A and condition is a is meet. Thus, you can use inheritance​. It will give you a permanent static relationship between these classes, and you will not be able to change it.Using Delegation, you can pass an object of another type, such as subtype of class A, to instance of B. This fact makes Delegation an extremely powerful mechanism.There are two types of delegation:  Explicitly: Can be implemented in any object oriented language.  Implicitly: Requires language support for this featureExplicitly Delegation:It can be implemented in any OOP language. Let’s look at the example:Here We have a MediaManager which has two reposibilities downloading the file and play it, which is further delegated to the objects name FileDownloader and FilePlayerFileDownloader.ktclass FileDownloader(private val fileName: String) : Downloader {    override fun download() {        println(&quot;Download File $fileName&quot;)    }}FilePlayer.ktclass FilePlayer(private val fileName: String) : Player {    override fun play() {        println(&quot;Play File $fileName&quot;)    }}FileManager.ktclass MediaFileManager(private val downloader: FileDownloader, private val player: FilePlayer) : Downloader, Player {      override fun download() {        downloader.download()    }    override fun play() {        player.play()    }}This has been mentioned previously: delegation pattern builds mutable relationship between classes, that’s why it’s a really flexible and powerful mechanism. As indicated in previous examples, Explicitly Delegation requires a lot of efforts to write methods that contain Forwarding calls to delegate instance.Implicitly DelegationLanguage-level feature that allows an object designate another one as its “parent” is called Implicitly Delegation. It, in particular, is divided into unanticipted delegation and anitcipated delegation.When delegation structure can be changed dynamically, is called unanticipated,whereas the second type refers to the fact that object can’t change parent during their life-cycle.Kotlin, unlike Java, supports delegation natively by language in the form of Class-Delegation and Delegated PropertiesExample MediaManager.kt in kotlin can be written asclass MediaManager(private val downloader: FileDownloader, private val player: FilePlayer) : Downloader by downloader, Player by player"
+  }
+  
+]
+
